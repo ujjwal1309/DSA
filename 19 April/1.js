@@ -1,18 +1,25 @@
-function tallestAround(arr, n, k) {
-  let arr2 = [];
-  for (let i = 0; i <= n - k; i++) {
-    let arr3 = [];
-    for (let j = i; j < i + k; j++) {
-      arr3.push(arr[j]);
+function unique(str) {
+  let obj = {};
+  let q = [];
+  let ans = "";
+  for (let i = 0; i < str.length; i++) {
+    if (obj[str[i]] === undefined) {
+      obj[str[i]] = 1;
+      q.push(str[i]);
+    } else {
+      obj[str[i]]++;
+      while (obj[q[0]] > 1) {
+        q.shift();
+      }
     }
-    arr2.push(arr3);
+
+    if (q.length) {
+      ans += q[0];
+    } else {
+      ans += "#";
+    }
   }
-  let ans = [];
-  for (let i of arr2) {
-    let max = Math.max(...i);
-    ans.push(max);
-  }
-  console.log(ans.join(" "));
+  console.log(ans);
 }
 
 function runProgram(input) {
@@ -21,17 +28,14 @@ function runProgram(input) {
   let tc = +input[0];
   let line = 1;
   for (let i = 0; i < tc; i++) {
-    let x = input[line++].trim().split(" ").map(Number);
-    let n = x[0],
-      k = x[1];
-    let arr = input[line++].trim().split(" ").map(Number);
-    tallestAround(arr, n, k);
+    let str = input[line++].trim();
+    unique(str);
   }
 }
 if (process.env.USERNAME === "ujjwa") {
-  runProgram(`1
-    9 3
-    1 2 3 1 4 5 2 3 6`);
+  runProgram(`2
+    abadbc
+    abcabc`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
