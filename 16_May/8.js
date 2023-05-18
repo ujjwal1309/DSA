@@ -11,6 +11,8 @@ function sumExist(arr,n,k){
     console.log("no")
 }
 
+a=2
+
 function runProgram(input) {
     // Write code here
     input=input.trim().split("\n");
