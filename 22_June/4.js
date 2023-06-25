@@ -23,7 +23,7 @@ function runProgram(input) {
     }
    
   }
-  if (process.env.USERNAME=== "ujjwa") {
+  if (process.env.USERNAME=== "ujjwa9o[") {
     runProgram(`2
     5
     1 2 0 4 5

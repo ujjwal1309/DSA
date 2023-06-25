@@ -1,5 +1,27 @@
 function foo(arr,n,m){
-    console.log(arr);
+
+    let all=[];
+    for(let i=0; i<n; i++){
+        for(let j=0; j<m; j++){
+            if(arr[i][j]==0){
+                all.push([i,j]);
+            }
+
+        }
+    }
+    
+    for(let i of all){
+        for(let j=0; j<n; j++){
+            arr[i[0]][j]=0
+        }
+        for(let j=0; j<m; j++){
+            arr[j][i[1]]=0
+        }
+    }
+
+    for(let i=0; i<n; i++){
+        console.log(arr[i].join(" "))
+    }
 }
 
 function runProgram(input) {
@@ -12,7 +34,7 @@ function runProgram(input) {
         let n=x[0],m=x[1];
         let arr=new Array(n);
         for(let i=0; i<n; i++){
-            arr[i]=input[line++].trim().split("");
+            arr[i]=input[line++].trim().split(" ").map(Number);
         }
         foo(arr,n,m)
     }
@@ -42,5 +64,3 @@ function runProgram(input) {
       process.exit(0) ;
     });
   }
-
-  //Select * from employees where salary >= (select avg(salary) from employess group by department) 
