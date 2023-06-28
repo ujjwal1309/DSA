@@ -1,24 +1,6 @@
 function foo(arr,n){
     let obj={};
 
-    let a=[]
-
-    for(let i of arr){
-        let s=[...i];
-        s=s.sort().join("")
-        a.push(s)
-    }
-
-    a.sort()
-
-    console.log(a)
-
-    for(let i of a){
-        obj[i]=0
-    }
-
-    console.log(obj)
-
     for(let i of arr){
         let s=[...i];
         s=s.sort().join("")

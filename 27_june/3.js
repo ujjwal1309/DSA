@@ -8,13 +8,19 @@ function foo(arr,n,k){
             obj[i]++
         }
     }
-    let ans=''
+    let ans=[]
     for(let i in obj){
-        if(obj[i]>=k){
-            ans+=i+" "
-        }
+      ans.push([i,obj[i]])
     }
-    console.log(ans)
+    ans.sort((a,b)=>b[1]-a[1]);
+
+    let a=[];
+
+    for(let i=0; i<k; i++){
+      a.push(+ans[i][0])
+    }
+
+    console.log(a.sort((a,b)=>a-b).join(" "))
     
 }
 
