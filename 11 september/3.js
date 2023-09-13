@@ -11,7 +11,9 @@ function foo(arr,n){
         ans[j]*=p;
         p*=arr[j]
     }
-    console.log(ans.join(" "))
+    console.log(ans.join(" "));
+
+    //s
 }
 
 function runProgram(input) {

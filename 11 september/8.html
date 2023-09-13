@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    async function get() {
+        let c = "AR"
+        for (let i = 1; i < 26; i++) {
+            const res = await fetch(`https://jsonmock.hackerrank.com/api/countries?page=${i}`);
+
+            let data = await res.json();
+
+            data = data.data;
+
+
+            for (let j = 0; j < data.length; j++) {
+                if (data[j].alpha2Code === c) {
+                    return data[j].name;
+                }
+            }
+        }
+
+    }
+    get().then(a=>{
+        console.log(a)
+    });
+
+</script>
