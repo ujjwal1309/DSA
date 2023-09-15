@@ -1,47 +1,47 @@
-function movingZeroes(arr,n){
-    let arr1=[],arr2=[];
-
-    for(let i of arr){
-        if(i==0){
-            arr1.push(i);
+let c1=l1;
+let c2=l2;
+let l3=null;
+let c3=l3;
+let carry=0;
+while(c1 || c2){
+    if(c1 && c2){
+        let sum=c1.val+c2.val+carry;
+        carry=Math.floor(sum/10);
+        let data=sum%10;
+        if(!c3){
+            l3=new ListNode(data);
+            c3=l3;
         }else{
-            arr2.push(i);
+            c3.next=new ListNode(data);
+            c3=c3.next;
         }
+        c1=c1.next;
+        c2=c2.next;
+    }else if(c1){
+        let sum=c1.val+carry;
+        carry=Math.floor(sum/10);
+        let data=sum%10;
+        if(!c3){
+            l3=new ListNode(data);
+            c3=l3;
+        }else{
+            c3.next=new ListNode(data);
+            c3=c3.next;
+        }
+        c1=c1.next;
+    }else{
+        let sum=c2.val+carry;
+        carry=Math.floor(sum/10);
+        let data=sum%10;
+        if(!c3){
+            l3=new ListNode(data);
+            c3=l3;
+        }else{
+            c3.next=new ListNode(data);
+            c3=c3.next;
+        }
+        c2=c2.next;
     }
-
-    console.log(arr2.join(" ")+" "+arr1.join(" "))
 }
 
-function runProgram(input) {
-    // Write code here
-   input=input.trim().split("\n");
-   let tc=+input[0];
-   let line=1;
-   for(let i=0; i<tc; i++){
-    let n=+input[line++].trim()
-    let arr=input[line++].trim().split(" ").map(Number);
-    movingZeroes(arr,n)
-   }
-  }
-  if (process.env.USERNAME=== "ujjwa") {
-    runProgram(`1
-    5
-    0 1 0 12 3`);
-  } else {
-    process.stdin.resume();
-    process.stdin.setEncoding("ascii");
-    let read = "";
-    process.stdin.on("data", function (input) {
-      read += input;
-    });
-    process.stdin.on("end", function () {
-      read = read.replace(/\n$/, "");
-      read = read.replace(/\n$/, "");
-      runProgram(read);
-    });
-    process.on("SIGINT", function () {
-      read = read.replace(/\n$/, "");
-      runProgram(read);
-      process.exit(0) ;
-    });
-  }
+return l3

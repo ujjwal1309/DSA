@@ -1,33 +1,38 @@
 function foo(arr,n){
-    let v=0,a=0;
-    let count=0;
-    let flag=true
+    let obj={
+        "5":0,
+        "10":0,
+        "20":0
+    }
+
     for(let i of arr){
-        if(flag){
-            a+=i;
-            if(i%2===1){
-                flag=false;
+        obj[i]++;
+        if(i===10){
+            if(!obj["5"]){
+                return "NO"
             }
-        }else{
-            v+=i;
-            if(i%2===1){
-                flag=true;
+
+            obj["5"]--
+        }else if(i===20){
+            if(obj["10"]){
+                obj["10"]--;
+                if(!obj["5"]){
+                    return "NO"
+                }
+                obj["5"]--
+            }else if(obj["5"]){
+                if(obj["5"]<3){
+                    return "NO"
+                }
+
+                obj["5"]-=3
+            }else{
+                return "NO";
             }
-        }
-        count++;
-        if(count===6){
-            flag=!flag;
-            count=0
         }
     }
 
-    if(a>v){
-        console.log("AB de Villiers");
-    }else if(a<v){
-        console.log("Virat Kohli")
-    }else{
-        console.log("Tie")
-    }
+    return "YES"
 }
 
 function runProgram(input) {
@@ -38,18 +43,16 @@ function runProgram(input) {
     for(let i=0; i<tc; i++){
         let n=+input[line++];
         let arr=input[line++].trim().split(" ").map(Number);
-        foo(arr,n);
+        console.log(foo(arr,n));
     }
    
   }
   if (process.env.USERNAME=== "ujjwa") {
-    runProgram(`3
-    2
-    1 2 0 0 1 1 6 6 4 1 6 1
-    3
-    0 0 0 0 0 1 0 0 0 0 1 1 6 6 6 1 4 4
-    1
-    0 1 0 1 0 0`);
+    runProgram(`2
+    5
+    5 5 5 10 20
+    5
+    5 5 10 10 20`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
